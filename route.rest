@@ -1,0 +1,33 @@
+GET  http://localhost:5000/information
+
+###
+
+GET  http://localhost:5000/information/5d55a47ee42ec839bcde3927
+
+###
+
+POST http://localhost:5000/information
+Content-Type: application/json
+
+{
+    "name": "Spring Race 10km",
+    "distance": 10,
+    "date": "2019-04-12 15:00",
+    "capacity": 100,
+    "location": "Göteborg",
+    "message": "Welcome to the Spring Race 10km in Gothenburg! Good luck!",
+    "displayOption": "x"
+}
+
+###
+
+DELETE http://localhost:5000/information/5dc31b91d1070e2bf0e71478
+
+###
+
+PATCH http://localhost:5000/information/5da770831a2d512bdcd73418
+Content-Type: application/json
+
+{
+    "display": true
+}
