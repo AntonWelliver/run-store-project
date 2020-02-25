@@ -3,7 +3,7 @@ import FeaturedRace from '../raceHandler/FeaturedRace';
 
 const Home = () => {
     return (
-        <div class="grid-2">
+        <div className="grid-2">
             <div>
                 <FeaturedRace />
             </div>
