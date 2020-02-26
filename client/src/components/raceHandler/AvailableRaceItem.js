@@ -9,7 +9,7 @@ const AvailableRaceItem = ({ race }) => {
         name,
         date,
         distance,
-        cost,
+        price,
         capacity,
         entries,
         location,
@@ -29,13 +29,13 @@ const AvailableRaceItem = ({ race }) => {
                         'badge ' +
                         (capacity - entries > 30 ? 'badge-success' : 'badge-danger')
                     }>
-                    Availability: {capacity - entries} {'/'} {capacity}
+                    Entries: {entries} {'/'} {capacity}
                 </span>
             </h3>
             <ul>
                 <li>Location: {location}</li>
                 <li>Date: {date} Time: {time}</li>
-                <li>Entry fee: {cost} kr</li>
+                <li>Entry fee: {price} kr</li>
             </ul>
             <button className='btn btn-primary btn-sm' onClick={onClick}>
                 Select Race

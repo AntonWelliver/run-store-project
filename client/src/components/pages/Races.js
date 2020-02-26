@@ -1,11 +1,12 @@
 import React from 'react';
 import AvailableRaces from '../raceHandler/AvailableRaces';
+import ConfirmRace from '../raceHandler/ConfirmRace';
 
 const Races = () => {
     return (
         <div className='grid-2'>
             <div>
-                <p>Hej</p>
+                <ConfirmRace />
             </div>
             <div>
                 <AvailableRaces />

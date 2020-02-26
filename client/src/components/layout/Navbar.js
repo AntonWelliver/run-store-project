@@ -29,7 +29,7 @@ const Navbar = ({ title }) => {
                     <Link to='/contact' style={{ color: 'black' }}>Contact</Link>
                 </li>
                 <button style={{ paddingRight: '10px', paddingLeft: '10px', borderRadius: '10px' }} onClick={onClick}>
-                    <i class="fas fa-bars"></i>
+                    <i className="fas fa-bars"></i>
                 </button>
             </ul>
         </div>
