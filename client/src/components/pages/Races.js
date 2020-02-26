@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import AvailableRaces from '../raceHandler/AvailableRaces';
 
 const Races = () => {
     return (
@@ -7,10 +8,10 @@ const Races = () => {
                 <p>Hej</p>
             </div>
             <div>
-                <p>Hej2</p>
+                <AvailableRaces />
             </div>
         </div>
     );
 };
 
-export default Races
+export default Races;
