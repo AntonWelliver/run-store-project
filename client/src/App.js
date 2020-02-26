@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import Shop from './components/pages/Shop';
+import Races from './components/pages/Races';
 import Sidebar from './components/layout/Sidebar';
 
 import SidebarState from './context/sidebar/SidebarState';
@@ -21,6 +22,7 @@ const App = () => {
               <Switch>
                 <Route exact path='/' component={Home} />
                 <Route exact path='/shop' component={Shop} />
+                <Route exact path='/races' component={Races} />
               </Switch>
             </div>
           </Fragment>

@@ -466,6 +466,7 @@ table th {
     transition: opacity 1000ms ease-in;
 }
 
+/* Sidebar */
 .sidebar {
     height: 100vh;
     padding-right: 20px;
@@ -481,6 +482,10 @@ table th {
 .sidebar.close {
     right: 0;
     animation: slide-close 1s forwards;
+}
+
+.link {
+    color: black;
 }
 
 @keyframes slide-open {

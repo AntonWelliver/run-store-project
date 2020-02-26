@@ -14,7 +14,7 @@ const Sidebar = () => {
                 <h2>Sidebar</h2>
                 <ul>
                     <li>
-                        <Link to='/' onClick={onClick} className='btn-primary'>
+                        <Link to='/races' onClick={onClick} className='link'>
                             Races
                         </Link>
                     </li>

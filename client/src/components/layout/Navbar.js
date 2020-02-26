@@ -20,6 +20,9 @@ const Navbar = ({ title }) => {
             </h1>
             <ul>
                 <li>
+                    <Link to='/' style={{ color: 'black' }}>Home</Link>
+                </li>
+                <li>
                     <Link to='/shop' style={{ color: 'black' }}>Shop</Link>
                 </li>
                 <li>
