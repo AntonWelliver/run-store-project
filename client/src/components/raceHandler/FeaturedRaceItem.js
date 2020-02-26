@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import RaceHandlerContext from '../../context/raceHandler/raceHandlerContext';
 
 const FeaturedRaceItem = ({ race }) => {
+    const raceHandlerContext = useContext(RaceHandlerContext);
+    const { setSelectedRace } = raceHandlerContext;
     const { message1, message2, message3 } = race;
+    const onClick = () => {
+        setSelectedRace(race);
+    }
     return (
         <div className='card bg-light'>
             <h1 className='text-danger text-center lead'>New Information!</h1>
@@ -15,10 +23,28 @@ const FeaturedRaceItem = ({ race }) => {
                 {message3}
             </h2>
             <p>
-                <button className='btn btn-success btn-lg'>Register Here!</button>
+                <Link
+                    to='/races'
+                    className='btn btn-lg'
+                    style={btnStyle}
+                    onClick={onClick}
+                >
+                    Sign up now!
+                </Link>
             </p>
         </div>
-    )
-}
+    );
+};
 
-export default FeaturedRaceItem
+const btnStyle = {
+    color: 'black',
+    background: '#ffffc0',
+    border: '2px solid black',
+    borderRadius: '8px'
+};
+
+FeaturedRaceItem.propTypes = {
+    race: PropTypes.object.isRequired
+};
+
+export default FeaturedRaceItem;
