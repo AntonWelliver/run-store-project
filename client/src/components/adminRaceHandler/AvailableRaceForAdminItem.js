@@ -4,13 +4,12 @@ import RaceHandlerContext from '../../context/raceHandler/raceHandlerContext';
 
 const AvailableRaceForAdminItem = ({ race }) => {
     const raceHandlerContext = useContext(RaceHandlerContext);
+    const { deleteRace, setCurrentRace, clearCurrentRace } = raceHandlerContext;
 
     const {
         id,
         name,
-        distance,
         date,
-        time,
         location,
         capacity,
         entries,
@@ -20,6 +19,11 @@ const AvailableRaceForAdminItem = ({ race }) => {
         info3,
         show
     } = race;
+
+    const onDelete = () => {
+        deleteRace(id);
+        clearCurrentRace();
+    };
 
     return (
         <div className='card bg-light'>
@@ -44,16 +48,22 @@ const AvailableRaceForAdminItem = ({ race }) => {
             </h3>
             <ul>
                 <li>Location: {location}</li>
-                <li>Date: {date} Time: {time}</li>
+                <li>Date and Time: {date} </li>
                 <li>Entry fee: {price} kr</li>
                 <li>{info1}</li>
                 <li>{info2}</li>
                 <li>{info3}</li>
             </ul>
-            <button className='btn btn-primary btn-sm'>
+            <button
+                className='btn btn-primary btn-sm'
+                onClick={() => setCurrentRace(race)}
+            >
                 Edit
             </button>
-            <button className='btn btn-primary btn-sm'>
+            <button
+                className='btn btn-primary btn-sm'
+                onClick={onDelete}
+            >
                 Delete
             </button>
         </div>

@@ -8,7 +8,6 @@ const AvailableRaceItem = ({ race }) => {
     const {
         name,
         date,
-        distance,
         price,
         capacity,
         entries,

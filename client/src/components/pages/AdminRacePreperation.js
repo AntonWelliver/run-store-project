@@ -1,11 +1,12 @@
 import React from 'react';
 import AvailableRacesForAdmin from '../adminRaceHandler/AvailableRacesForAdmin';
+import RaceBuildForm from '../adminRaceHandler/RaceBuildForm';
 
 const Races = () => {
     return (
         <div className='grid-2'>
             <div>
-                <p>Hej</p>
+                <RaceBuildForm />
             </div>
             <div>
                 <AvailableRacesForAdmin />

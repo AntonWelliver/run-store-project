@@ -1,10 +1,16 @@
 import React, { useReducer } from 'react';
+import uuid from 'uuid';
 import RaceHandlerContext from './raceHandlerContext';
 import raceHandlerReducer from './raceHandlerReducer';
 import {
     GET_FEATURED_RACE,
     SET_SELECTED_RACE,
-    CLEAR_SELECTED_RACE
+    CLEAR_SELECTED_RACE,
+    ADD_RACE,
+    DELETE_RACE,
+    SET_CURRENT_RACE,
+    CLEAR_CURRENT_RACE,
+    UPDATE_RACE
 } from '../typesLibrary';
 
 const RaceHandlerState = props => {
@@ -59,10 +65,31 @@ const RaceHandlerState = props => {
         ],
         selectedRace: null,
         raceArchive: [],
-        current: null
+        currentRace: null
     };
 
     const [state, dispatch] = useReducer(raceHandlerReducer, initialState);
+
+    const addRace = race => {
+        race.id = uuid.v4();
+        dispatch({ type: ADD_RACE, payload: race });
+    };
+
+    const deleteRace = id => {
+        dispatch({ type: DELETE_RACE, payload: id });
+    };
+
+    const setCurrentRace = race => {
+        dispatch({ type: SET_CURRENT_RACE, payload: race });
+    };
+
+    const clearCurrentRace = () => {
+        dispatch({ type: CLEAR_CURRENT_RACE });
+    };
+
+    const updateRace = race => {
+        dispatch({ type: UPDATE_RACE, payload: race });
+    };
 
     //Get Featured Races
     const getFeaturedRace = () => {
@@ -86,10 +113,15 @@ const RaceHandlerState = props => {
                 availableRaces: state.availableRaces,
                 selectedRace: state.selectedRace,
                 raceArchive: state.raceArchive,
-                current: state.current,
+                currentRace: state.currentRace,
                 getFeaturedRace,
                 setSelectedRace,
-                clearSelectedRace
+                clearSelectedRace,
+                addRace,
+                deleteRace,
+                setCurrentRace,
+                clearCurrentRace,
+                updateRace
             }}>
             {props.children}
         </RaceHandlerContext.Provider>

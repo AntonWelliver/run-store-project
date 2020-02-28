@@ -9,6 +9,7 @@ const FeaturedRace = () => {
 
     useEffect(() => {
         getFeaturedRace();
+        // eslint-disable-next-line
     }, []);
 
     return (
