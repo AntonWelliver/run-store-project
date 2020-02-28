@@ -5,6 +5,7 @@ import Home from './components/pages/Home';
 import Shop from './components/pages/Shop';
 import Races from './components/pages/Races';
 import Sidebar from './components/layout/Sidebar';
+import AdminRacePreperation from './components/pages/AdminRacePreperation';
 
 import SidebarState from './context/sidebar/SidebarState';
 import RaceHandlerState from './context/raceHandler/RaceHandlerState';
@@ -23,6 +24,7 @@ const App = () => {
                 <Route exact path='/' component={Home} />
                 <Route exact path='/shop' component={Shop} />
                 <Route exact path='/races' component={Races} />
+                <Route exact path='/admin-race-preperation' component={AdminRacePreperation} />
               </Switch>
             </div>
           </Fragment>

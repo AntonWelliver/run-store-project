@@ -2,22 +2,24 @@ import React, { useContext } from 'react';
 import Proptypes from 'prop-types';
 import RaceHandlerContext from '../../context/raceHandler/raceHandlerContext';
 
-const AvailableRaceItem = ({ race }) => {
+const AvailableRaceForAdminItem = ({ race }) => {
     const raceHandlerContext = useContext(RaceHandlerContext);
-    const { setSelectedRace } = raceHandlerContext;
+
     const {
+        id,
         name,
-        date,
         distance,
-        price,
+        date,
+        time,
+        location,
         capacity,
         entries,
-        location,
-        time
+        price,
+        info1,
+        info2,
+        info3,
+        show
     } = race;
-    const onClick = () => {
-        setSelectedRace(race);
-    };
 
     return (
         <div className='card bg-light'>
@@ -31,21 +33,35 @@ const AvailableRaceItem = ({ race }) => {
                     }>
                     Entries: {entries} {'/'} {capacity}
                 </span>
+                <span
+                    style={{ float: 'right' }}
+                    className={
+                        'badge ' +
+                        (show === 'yes' ? 'badge-success' : 'badge-danger')
+                    }>
+                    Show on frontpage: {show}
+                </span>
             </h3>
             <ul>
                 <li>Location: {location}</li>
                 <li>Date: {date} Time: {time}</li>
                 <li>Entry fee: {price} kr</li>
+                <li>{info1}</li>
+                <li>{info2}</li>
+                <li>{info3}</li>
             </ul>
-            <button className='btn btn-primary btn-sm' onClick={onClick}>
-                Select Race
+            <button className='btn btn-primary btn-sm'>
+                Edit
+            </button>
+            <button className='btn btn-primary btn-sm'>
+                Delete
             </button>
         </div>
     );
 };
 
-AvailableRaceItem.propTypes = {
+AvailableRaceForAdminItem.propTypes = {
     race: Proptypes.object.isRequired
 };
 
-export default AvailableRaceItem;
+export default AvailableRaceForAdminItem;

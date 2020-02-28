@@ -20,9 +20,9 @@ const RaceHandlerState = props => {
                 capacity: 100,
                 entries: 100,
                 location: "Göteborg",
-                message1: "Välkomna till Vårloppet 5km!",
-                message2: "Var: Göteborg",
-                message3: "När: 12/4",
+                info1: "Välkomna till Vårloppet 5km!",
+                info2: "Var: Göteborg",
+                info3: "När: 12/4",
                 show: "yes",
                 price: 100
             },
@@ -35,9 +35,9 @@ const RaceHandlerState = props => {
                 capacity: 100,
                 entries: 60,
                 location: "Stockholm",
-                message1: "Välkomna till Sommarloppet 10km!",
-                message2: "Var: Stockholm",
-                message3: "När: 12/6",
+                info1: "Välkomna till Sommarloppet 10km!",
+                info2: "Var: Stockholm",
+                info3: "När: 12/6",
                 show: "no",
                 price: 100
             },
@@ -50,14 +50,16 @@ const RaceHandlerState = props => {
                 capacity: 100,
                 entries: 20,
                 location: "Malmö",
-                message1: "Välkomna till Höstlopept 2km!",
-                message2: "Var: Malmö",
-                message3: "När: 12/9",
+                info1: "Välkomna till Höstlopept 2km!",
+                info2: "Var: Malmö",
+                info3: "När: 12/9",
                 show: "no",
                 price: 100
             }
         ],
-        selectedRace: null
+        selectedRace: null,
+        raceArchive: [],
+        current: null
     };
 
     const [state, dispatch] = useReducer(raceHandlerReducer, initialState);
@@ -83,6 +85,8 @@ const RaceHandlerState = props => {
                 featuredRace: state.featuredRace,
                 availableRaces: state.availableRaces,
                 selectedRace: state.selectedRace,
+                raceArchive: state.raceArchive,
+                current: state.current,
                 getFeaturedRace,
                 setSelectedRace,
                 clearSelectedRace
