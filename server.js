@@ -1,7 +1,13 @@
 require('dotenv').config()
 
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+
+/* const errorHandler = require('./middleware/error'); */
+
 
 const app = express();
 
@@ -12,25 +18,40 @@ app.use(function (req, res, next) {
     next();
 });
 
-//Connect To Mongoose
-mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-    .then(() => console.log('MongoDB Connected...'))
-    .catch(err => console.log(err));
+
+const connectDB = async () => {
+    try {
+        const constant = await mongoose.connect(process.env.DATABASE_URL, {
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false
+        });
+        console.log('MongoDB Connected...');
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+connectDB();
 
 app.use(express.json({ extended: false }));
 
-// Load Race Model
-require('./models/Race');
-const Race = mongoose.model('races');
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
+const raceList = require('./routes/raceList');
+/* const auth = require('./routes/auth'); */
+
+app.use('/api/v1/race-list', raceList);
+/* app.use('/api/v1/auth', auth); */
 
 // Set static folder
 app.use(express.static('public'));
 
-const informationRouter = require('./routes/information')
-app.use('/information', informationRouter)
+/* const informationRouter = require('./routes/information')
+app.use('/information', informationRouter) */
 
 const port = 5000;
 
