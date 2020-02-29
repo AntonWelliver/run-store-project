@@ -1,5 +1,6 @@
 .env
 node_modules
+z-code
 
 /client/build
 

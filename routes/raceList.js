@@ -1,7 +1,26 @@
-const express = require('express')
-const router = express.Router()
-const Race = require('../models/Race')
+const express = require('express');
+const {
+    getAllRaces,
+    createRace,
+    getSingleRace,
+    updateRace,
+    deleteRace
+} = require('../controllers/raceList');
+const router = express.Router();
+const Race = require('../models/Race');
 
+router
+    .route('/')
+    .get(getAllRaces)
+    .post(createRace);
+
+router
+    .route('/:id')
+    .get(getSingleRace)
+    .put(updateRace)
+    .delete(deleteRace);
+
+/* 
 //Getting All
 router.get('/', async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -65,7 +84,7 @@ router.patch('/:id', getInformation, async (req, res) => {
         const updatedInformation = await res.information.save()
         res.json(updatedInformation)
     } catch (err) {
-        res.status(400).json({message: err.message})
+        res.status(400).json({ message: err.message })
     }
 })
 
@@ -92,6 +111,6 @@ async function getInformation(req, res, next) {
 
     res.information = information
     next()
-}
+} */
 
 module.exports = router

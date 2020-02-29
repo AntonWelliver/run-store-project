@@ -1,33 +1,39 @@
-GET  http://localhost:5000/information
+GET  http://localhost:5000/api/v1/race-list
 
 ###
 
-GET  http://localhost:5000/information/5d55a47ee42ec839bcde3927
+GET  http://localhost:5000/api/v1/race-list/5e25a407464b9e033d837a0f
 
 ###
 
-POST http://localhost:5000/information
+POST http://localhost:5000/api/v1/race-list
 Content-Type: application/json
 
 {
-    "name": "Spring Race 10km",
-    "distance": 10,
-    "date": "2019-04-12 15:00",
-    "capacity": 100,
+    "name": "Extraloppet 1km",
+    "distance": 1,
+    "date": "2020-03-01 12:00",
+    "capacity": 30,
     "location": "Göteborg",
-    "message": "Welcome to the Spring Race 10km in Gothenburg! Good luck!",
+    "message": "Ett extralopp",
     "displayOption": "x"
 }
 
 ###
 
-DELETE http://localhost:5000/information/5dc31b91d1070e2bf0e71478
+DELETE http://localhost:5000/api/v1/race-list/5e5a8dfb795ed3518c8ecec7
 
 ###
 
-PATCH http://localhost:5000/information/5da770831a2d512bdcd73418
+PUT http://localhost:5000/api/v1/race-list/5e5a8dfb795ed3518c8ecec7
 Content-Type: application/json
 
 {
-    "display": true
+    "name": "Extraloppet 1km",
+    "distance": 1,
+    "date": "2020-03-01 16:00",
+    "capacity": 20,
+    "location": "Göteborg",
+    "message": "Ett extralopp",
+    "displayOption": "x"
 }
