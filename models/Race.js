@@ -5,31 +5,45 @@ const Schema = mongoose.Schema;
 const RaceSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: [true, 'Enter a race name']
     },
     distance: {
         type: Number,
-        required: true
+        required: [true, 'Enter a distance']
     },
     date: {
         type: Date,
-        required: true
+        required: [true, 'Enter date and time']
     },
     capacity: {
         type: Number,
-        required: true
+        required: [true, 'Enter a capacity']
+    },
+    entries: {
+        type: Number,
+        default: 0
     },
     location: {
         type: String,
-        required: true
+        required: [true, 'Enter a location']
     },
-    message: {
-        type: String,
-        required: true
+    info1: {
+        type: String
     },
-    displayOption: {
+    info2: {
+        type: String
+    },
+    info3: {
+        type: String
+    },
+    price: {
         type: String,
-        required: true
+        required: [true, 'Enter a price']
+    },
+    show: {
+        type: String,
+        enum: ['no', 'yes'],
+        default: 'no'
     }
 });
 
