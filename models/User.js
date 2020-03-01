@@ -6,25 +6,25 @@ const jwt = require('jsonwebtoken');
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please add a name']
+    required: [true, 'Add a name']
   },
   email: {
     type: String,
-    required: [true, 'Please add an email'],
+    required: [true, 'Add an email'],
     unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Please add a valid email'
+      'Add a valid email'
     ]
   },
   role: {
     type: String,
-    enum: ['user', 'publisher'],
+    enum: ['user'],
     default: 'user'
   },
   password: {
     type: String,
-    required: [true, 'Please add a password'],
+    required: [true, 'Add a password'],
     minlength: 6,
     select: false
   },
@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Encrypt password using bcrypt
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
   // If password is not modified, then skip this step (happened in restPasswordToken generation/save)
   if (!this.isModified('password')) {
     next();
@@ -48,19 +48,19 @@ UserSchema.pre('save', async function(next) {
 });
 
 // Sign JWT and return
-UserSchema.methods.getSignedJwtToken = function() {
+UserSchema.methods.getSignedJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE
   });
 };
 
 // Match user entered password to hashed password in database
-UserSchema.methods.matchPassword = async function(enteredPassword) {
+UserSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
 // Generate and hash pasword token
-UserSchema.methods.getResetPasswordToken = function() {
+UserSchema.methods.getResetPasswordToken = function () {
   // Generate token
   const resetToken = crypto.randomBytes(20).toString('hex');
 
@@ -72,10 +72,6 @@ UserSchema.methods.getResetPasswordToken = function() {
 
   // Set expire  to 10 minutes
   this.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
-
-  console.log('User');
-  console.log(this.resetPasswordToken);
-  console.log(this.resetPasswordExpire);
 
   // return original resetToken
   return resetToken;
