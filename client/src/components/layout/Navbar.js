@@ -26,7 +26,7 @@ const Navbar = ({ title }) => {
                     <Link to='/shop' style={{ color: 'black' }}>Shop</Link>
                 </li>
                 <li>
-                    <Link to='/contact' style={{ color: 'black' }}>Contact</Link>
+                    <Link to='/login' style={{ color: 'black' }}>Login</Link>
                 </li>
                 <button style={{ paddingRight: '10px', paddingLeft: '10px', borderRadius: '10px' }} onClick={onClick}>
                     <i className="fas fa-bars"></i>
