@@ -12,7 +12,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     console.log('check headers');
-    // "Bearer 123cvrvb" is split up in an array of two. We pick the second by [1]
     token = req.headers.authorization.split(' ')[1];
   }
   /* for later
