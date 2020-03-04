@@ -2,7 +2,7 @@ import React from 'react';
 import AvailableRacesForAdmin from '../adminRaceHandler/AvailableRacesForAdmin';
 import RaceBuildForm from '../adminRaceHandler/RaceBuildForm';
 
-const Races = () => {
+const AdminRacePreperation = () => {
     return (
         <div className='grid-2'>
             <div>
@@ -15,4 +15,4 @@ const Races = () => {
     );
 };
 
-export default Races;
+export default AdminRacePreperation;

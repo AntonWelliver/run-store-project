@@ -11,7 +11,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    console.log('check headers');
     token = req.headers.authorization.split(' ')[1];
   }
   /* for later
@@ -22,23 +21,18 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
   // Make sure token exists
   if (!token) {
-    console.log('No token');
     return next(new ErrorResponse('Not authorized to access this route', 401));
   }
 
   // Verify token
   try {
-    console.log('Check token');
     // decode token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    console.log(decoded);
 
     // use id from token to access user in db
     req.user = await User.findById(decoded.id);
     next();
   } catch (err) {
-    console.log('No match token vs db');
     return next(new ErrorResponse('Not authorized to access this route', 401));
   }
 });

@@ -4,7 +4,6 @@ const Race = require('../models/Race')
 
 //Getting All
 exports.getAllRaces = asyncHandler(async (req, res, next) => {
-    /* res.header("Access-Control-Allow-Origin", "*"); */
     const raceList = await Race.find()
     res
         .status(200)

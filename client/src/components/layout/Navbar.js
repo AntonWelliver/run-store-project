@@ -17,8 +17,6 @@ const Navbar = ({ title }) => {
         }
     };
 
-    console.log(user);
-
     const onLogout = () => {
         logut();
     };
