@@ -42,9 +42,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const raceList = require('./routes/raceList');
+const productList = require('./routes/productList');
 const auth = require('./routes/auth');
 
 app.use('/api/v1/race-list', raceList);
+app.use('/api/v1/product-list', productList);
 app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);
