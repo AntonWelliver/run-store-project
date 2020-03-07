@@ -5,7 +5,11 @@ import {
     CLEAR_CURRENT_PRODUCT,
     UPDATE_PRODUCT,
     GET_PRODUCTS,
-    PRODUCT_ERROR
+    PRODUCT_ERROR,
+    ADD_TO_CART,
+    REMOVE_FROM_CART,
+    CONFIRM_ORDER,
+    CLEAR_ORDER
 } from '../typesLibrary';
 
 export default (state, action) => {
@@ -50,6 +54,28 @@ export default (state, action) => {
             return {
                 ...state,
                 error: action.payload
+            };
+        case ADD_TO_CART:
+            return {
+                ...state,
+                shoppingCart: [...state.shoppingCart, action.payload],
+                shoppingTotal: state.shoppingTotal + action.payload.price
+            };
+        case REMOVE_FROM_CART:
+            return {
+                ...state,
+                shoppingCart: state.shoppingCart.filter(product => product._id !== action.payload),
+                shoppingTotal: state.shoppingTotal - action.payload.price
+            };
+        case CONFIRM_ORDER:
+            return {
+                ...state,
+                orderConfirmed: true
+            };
+        case CLEAR_ORDER:
+            return {
+                ...state,
+                orderConfirmed: false
             };
         default:
             return state;

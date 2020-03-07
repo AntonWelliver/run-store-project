@@ -32,3 +32,7 @@ export const GET_RACES = 'GET_RACES';
 export const RACE_ERROR = 'RACE_ERROR';
 export const CONFRIM_RACE = 'CONFRIM_RACE';
 export const CLEAR_CONFIRMATION = 'CLEAR_CONFIRMATION';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const CONFIRM_ORDER = 'CONFIRM_ORDER';
+export const CLEAR_ORDER = 'CLEAR_ORDER';

@@ -9,7 +9,11 @@ import {
     CLEAR_CURRENT_PRODUCT,
     UPDATE_PRODUCT,
     GET_PRODUCTS,
-    PRODUCT_ERROR
+    PRODUCT_ERROR,
+    ADD_TO_CART,
+    REMOVE_FROM_CART,
+    CONFIRM_ORDER,
+    CLEAR_ORDER
 } from '../typesLibrary';
 
 const ShopHandlerState = props => {
@@ -17,7 +21,10 @@ const ShopHandlerState = props => {
         availableProducts: null,
         currentProduct: null,
         loading: true,
-        error: null
+        error: null,
+        shoppingCart: [],
+        shoppingTotal: 0,
+        orderConfirmed: false
     };
 
     const [state, dispatch] = useReducer(shopHandlerReducer, initialState);
@@ -88,6 +95,18 @@ const ShopHandlerState = props => {
         }
     };
 
+    const addToCart = product => {
+        dispatch({ type: ADD_TO_CART, payload: product })
+    };
+
+    const removeFromCart = product => {
+        dispatch({ type: REMOVE_FROM_CART, payload: product })
+    };
+
+    const setConfirmedOrder = () => dispatch({ type: CONFIRM_ORDER });
+
+    const clearOrder = () => dispatch({ type: CLEAR_ORDER });
+
     return (
         <ShopHandlerContext.Provider
             value={{
@@ -95,12 +114,19 @@ const ShopHandlerState = props => {
                 currentProduct: state.currentProduct,
                 loading: state.loading,
                 error: state.error,
+                shoppingCart: state.shoppingCart,
+                shoppingTotal: state.shoppingTotal,
+                orderConfirmed: state.orderConfirmed,
                 addProduct,
                 deleteProduct,
                 setCurrentProduct,
                 clearCurrentProduct,
                 updateProduct,
-                getProducts
+                getProducts,
+                addToCart,
+                removeFromCart,
+                setConfirmedOrder,
+                clearOrder
             }}>
             {props.children}
         </ShopHandlerContext.Provider>
