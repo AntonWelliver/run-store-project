@@ -9,6 +9,7 @@ import AdminRacePreperation from './components/pages/AdminRacePreperation';
 import AdminShopPreperation from './components/pages/AdminShopPreperation';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Checkout from './components/checkout/ShopCheckout';
 import Alerts from './components/layout/Alerts';
 
 import SidebarState from './context/sidebar/SidebarState';
@@ -44,6 +45,7 @@ const App = () => {
                       <Route exact path='/admin-shop-preperation' component={AdminShopPreperation} />
                       <Route exact path='/register' component={Register} />
                       <Route exact path='/login' component={Login} />
+                      <Route exact path='/checkout' component={Checkout} />
                     </Switch>
                   </div>
                 </Fragment>
