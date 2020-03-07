@@ -6,7 +6,12 @@ import {
     DELETE_RACE,
     SET_CURRENT_RACE,
     CLEAR_CURRENT_RACE,
-    UPDATE_RACE
+    UPDATE_RACE,
+    GET_RACES,
+    RACE_ERROR,
+    CLEAR_ERRORS,
+    CONFRIM_RACE,
+    CLEAR_CONFIRMATION
 } from '../typesLibrary';
 
 export default (state, action) => {
@@ -14,19 +19,22 @@ export default (state, action) => {
         case ADD_RACE:
             return {
                 ...state,
-                availableRaces: [...state.availableRaces, action.payload]
+                availableRaces: [...state.availableRaces, action.payload],
+                loading: false
             };
         case DELETE_RACE:
             return {
                 ...state,
-                availableRaces: state.availableRaces.filter(race => race.id !== action.payload)
+                availableRaces: state.availableRaces.filter(race => race._id !== action.payload),
+                loading: false
             };
         case UPDATE_RACE:
             return {
                 ...state,
                 availableRaces: state.availableRaces.map(race =>
-                    race.id === action.payload.id ? action.payload : race
-                )
+                    race._id === action.payload._id ? action.payload : race
+                ),
+                loading: false
             };
         case SET_CURRENT_RACE:
             return {
@@ -53,6 +61,33 @@ export default (state, action) => {
             return {
                 ...state,
                 selectedRace: null
+            };
+        case GET_RACES:
+            return {
+                ...state,
+                availableRaces: action.payload,
+                loading: false
+            };
+        case RACE_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            };
+        case CONFRIM_RACE:
+            return {
+                ...state,
+                raceIsConfirmed: false
+            };
+        case CLEAR_CONFIRMATION:
+            return {
+                ...state,
+                raceIsConfirmed: false
             };
         default:
             return state;

@@ -6,7 +6,7 @@ import AuthContext from '../../context/auth/authContext';
 
 const Navbar = ({ title }) => {
     const authContext = useContext(AuthContext);
-    const { isAuthenticated, logut, user } = authContext;
+    const { isAuthenticated, logut } = authContext;
     const sidebarContext = useContext(SidebarContext);
     const { openSidebar, closeSidebar, sidebarClassName } = sidebarContext;
     const onClick = () => {

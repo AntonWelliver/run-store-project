@@ -7,7 +7,6 @@ const {
     deleteRace
 } = require('../controllers/raceList');
 const router = express.Router();
-const Race = require('../models/Race');
 
 router
     .route('/')

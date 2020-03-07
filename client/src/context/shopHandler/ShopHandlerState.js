@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
 import axios from 'axios';
 import ShopHandlerContext from './shopHandlerContext';
 import shopHandlerReducer from './shopHandlerReducer';

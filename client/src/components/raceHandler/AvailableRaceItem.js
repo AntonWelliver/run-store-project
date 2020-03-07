@@ -12,7 +12,6 @@ const AvailableRaceItem = ({ race }) => {
         capacity,
         entries,
         location,
-        time
     } = race;
     const onClick = () => {
         setSelectedRace(race);
@@ -33,7 +32,7 @@ const AvailableRaceItem = ({ race }) => {
             </h3>
             <ul>
                 <li>Location: {location}</li>
-                <li>Date: {date} Time: {time}</li>
+                <li>Date: {date}</li>
                 <li>Entry fee: {price} kr</li>
             </ul>
             <button className='btn btn-primary btn-sm' onClick={onClick}>

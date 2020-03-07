@@ -2,7 +2,7 @@ import React from 'react';
 import AvailableProductsForAdmin from '../adminShopHandler/AvailableProductsForAdmin';
 import ProductsBuildForm from '../adminShopHandler/ProductBuildForm';
 
-const Products = () => {
+const AdminShopPreperation = () => {
     return (
         <div className='grid-2'>
             <div>
@@ -15,4 +15,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default AdminShopPreperation;

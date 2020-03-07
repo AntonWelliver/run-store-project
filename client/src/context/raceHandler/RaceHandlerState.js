@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
+import axios from 'axios';
 import RaceHandlerContext from './raceHandlerContext';
 import raceHandlerReducer from './raceHandlerReducer';
 import {
@@ -10,73 +10,55 @@ import {
     DELETE_RACE,
     SET_CURRENT_RACE,
     CLEAR_CURRENT_RACE,
-    UPDATE_RACE
+    UPDATE_RACE,
+    GET_RACES,
+    RACE_ERROR,
+    CLEAR_ERRORS,
+    CONFRIM_RACE,
+    CLEAR_CONFIRMATION
 } from '../typesLibrary';
 
 const RaceHandlerState = props => {
     const initialState = {
         featuredRace: [],
-        availableRaces: [
-            {
-                id: 1,
-                name: "Vårloppet 5km",
-                distance: 5,
-                date: "2020-04-12",
-                time: "13:00",
-                capacity: 100,
-                entries: 100,
-                location: "Göteborg",
-                info1: "Välkomna till Vårloppet 5km!",
-                info2: "Var: Göteborg",
-                info3: "När: 12/4",
-                show: "yes",
-                price: 100
-            },
-            {
-                id: 2,
-                name: "Sommarloppet 10km",
-                distance: 10,
-                date: "2020-06-12",
-                time: "13:00",
-                capacity: 100,
-                entries: 60,
-                location: "Stockholm",
-                info1: "Välkomna till Sommarloppet 10km!",
-                info2: "Var: Stockholm",
-                info3: "När: 12/6",
-                show: "no",
-                price: 100
-            },
-            {
-                id: 3,
-                name: "Höstloppet 2km",
-                distance: 2,
-                date: "2020-09-12",
-                time: "13:00",
-                capacity: 100,
-                entries: 20,
-                location: "Malmö",
-                info1: "Välkomna till Höstlopept 2km!",
-                info2: "Var: Malmö",
-                info3: "När: 12/9",
-                show: "no",
-                price: 100
-            }
-        ],
+        availableRaces: [],
         selectedRace: null,
         raceArchive: [],
-        currentRace: null
+        currentRace: null,
+        loading: true,
+        error: null,
+        raceIsConfirmed: false
     };
 
     const [state, dispatch] = useReducer(raceHandlerReducer, initialState);
 
-    const addRace = race => {
-        race.id = uuid.v4();
-        dispatch({ type: ADD_RACE, payload: race });
+    const addRace = async race => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        try {
+            const res = await axios.post('/api/v1/race-list', race, config);
+            dispatch({
+                type: ADD_RACE,
+                payload: res.data.newRace
+            });
+        } catch (err) {
+            dispatch({ type: RACE_ERROR, payload: err.response.data.error });
+        }
     };
 
-    const deleteRace = id => {
-        dispatch({ type: DELETE_RACE, payload: id });
+    const deleteRace = async _id => {
+        try {
+            await axios.delete(`/api/v1/race-list/${_id}`);
+            dispatch({
+                type: DELETE_RACE,
+                payload: _id
+            });
+        } catch (err) {
+            dispatch({ type: RACE_ERROR, payload: err.response.data.error });
+        }
     };
 
     const setCurrentRace = race => {
@@ -87,8 +69,21 @@ const RaceHandlerState = props => {
         dispatch({ type: CLEAR_CURRENT_RACE });
     };
 
-    const updateRace = race => {
-        dispatch({ type: UPDATE_RACE, payload: race });
+    const updateRace = async race => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        try {
+            const res = await axios.put(`/api/v1/race-list/${race._id}`, race, config);
+            dispatch({
+                type: UPDATE_RACE,
+                payload: res.data.updatedRace
+            });
+        } catch (err) {
+            dispatch({ type: RACE_ERROR, payload: err.response.data.error });
+        }
     };
 
     //Get Featured Races
@@ -106,6 +101,25 @@ const RaceHandlerState = props => {
         dispatch({ type: CLEAR_SELECTED_RACE });
     };
 
+    const getRaces = async () => {
+        try {
+            const res = await axios.get('/api/v1/race-list');
+
+            dispatch({
+                type: GET_RACES,
+                payload: res.data.raceList
+            });
+        } catch (err) {
+            dispatch({ type: RACE_ERROR, paylod: err.response.data.eror });
+        }
+    };
+
+    const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
+
+    const setRaceConfirmed = () => dispatch({ type: CONFRIM_RACE });
+
+    const clearConfirmation = () => dispatch({ type: CLEAR_CONFIRMATION });
+
     return (
         <RaceHandlerContext.Provider
             value={{
@@ -114,6 +128,9 @@ const RaceHandlerState = props => {
                 selectedRace: state.selectedRace,
                 raceArchive: state.raceArchive,
                 currentRace: state.currentRace,
+                loading: state.loading,
+                error: state.error,
+                raceIsConfirmed: state.raceIsConfirmed,
                 getFeaturedRace,
                 setSelectedRace,
                 clearSelectedRace,
@@ -121,7 +138,11 @@ const RaceHandlerState = props => {
                 deleteRace,
                 setCurrentRace,
                 clearCurrentRace,
-                updateRace
+                updateRace,
+                getRaces,
+                clearErrors,
+                clearConfirmation,
+                setRaceConfirmed
             }}>
             {props.children}
         </RaceHandlerContext.Provider>

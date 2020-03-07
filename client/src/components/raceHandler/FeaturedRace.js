@@ -4,18 +4,17 @@ import RaceHandlerContext from '../../context/raceHandler/raceHandlerContext';
 
 const FeaturedRace = () => {
     const raceHandlerContext = useContext(RaceHandlerContext);
-
-    const { featuredRace, getFeaturedRace } = raceHandlerContext;
+    const { featuredRace, getFeaturedRace, availableRaces } = raceHandlerContext;
 
     useEffect(() => {
         getFeaturedRace();
         // eslint-disable-next-line
-    }, []);
+    }, [availableRaces]);
 
     return (
         <Fragment>
             {featuredRace.map(race => (
-                <FeaturedRaceItem key={race.id} race={race} />
+                <FeaturedRaceItem key={race._id} race={race} />
             ))}
         </Fragment>
     )

@@ -7,7 +7,7 @@ const AvailableRaceForAdminItem = ({ race }) => {
     const { deleteRace, setCurrentRace, clearCurrentRace } = raceHandlerContext;
 
     const {
-        id,
+        _id,
         name,
         date,
         location,
@@ -21,7 +21,7 @@ const AvailableRaceForAdminItem = ({ race }) => {
     } = race;
 
     const onDelete = () => {
-        deleteRace(id);
+        deleteRace(_id);
         clearCurrentRace();
     };
 
