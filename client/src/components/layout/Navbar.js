@@ -21,6 +21,21 @@ const Navbar = ({ title }) => {
         logut();
     };
 
+    const adminLinks = (
+        <Fragment>
+            <li>
+                <Link to='/admin-shop-preperation' style={{ color: 'black' }}>
+                    ShopAdmin
+                </Link>
+            </li>
+            <li>
+                <Link to='/admin-race-preperation' style={{ color: 'black' }}>
+                    RaceAdmin
+                </Link>
+            </li>
+        </Fragment>
+    );
+
     const authLinks = (
         <Fragment>
             <li>
@@ -62,6 +77,8 @@ const Navbar = ({ title }) => {
             <h1>
                 {title}
             </h1>
+            <ul>{isAuthenticated && adminLinks}</ul>
+            {' '}
             <ul>
                 {isAuthenticated ? authLinks : guestLinks}
             </ul>
