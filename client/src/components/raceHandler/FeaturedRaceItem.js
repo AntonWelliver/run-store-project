@@ -7,6 +7,7 @@ const FeaturedRaceItem = ({ race }) => {
     const raceHandlerContext = useContext(RaceHandlerContext);
     const { setSelectedRace } = raceHandlerContext;
     const { info1, info2, info3 } = race;
+
     const onClick = () => {
         setSelectedRace(race);
     }

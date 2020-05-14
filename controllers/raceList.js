@@ -92,7 +92,7 @@ exports.getPayment = asyncHandler(async (req, res, next) => {
         {
             amount: product.price * 100,
             currency: 'sek',
-            customer: customer - id,
+            customer: customer.id,
             description: `Your registration for ${product.name} is ready`
         },
         { idempotencyKey }

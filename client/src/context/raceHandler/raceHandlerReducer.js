@@ -25,7 +25,9 @@ export default (state, action) => {
         case DELETE_RACE:
             return {
                 ...state,
-                availableRaces: state.availableRaces.filter(race => race._id !== action.payload),
+                availableRaces: state.availableRaces.filter(
+                    race => race._id !== action.payload
+                ),
                 loading: false
             };
         case UPDATE_RACE:
@@ -48,7 +50,6 @@ export default (state, action) => {
             };
         case GET_FEATURED_RACE:
             return {
-                //Get current race state
                 ...state,
                 featuredRace: state.availableRaces.filter(race => race.show === 'yes')
             };

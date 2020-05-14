@@ -120,6 +120,26 @@ const RaceHandlerState = props => {
 
     const clearConfirmation = () => dispatch({ type: CLEAR_CONFIRMATION });
 
+    const handlePayment = async (token, product, runner, raceId) => {
+        const body = {
+            token,
+            product,
+            runner,
+            raceId
+        };
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try {
+            const res = await axios.post('/api/v1/race-list/payment', body, config);
+        } catch (err) {
+            dispatch({ type: RACE_ERROR, payload: err.response.data.error });
+        }
+    };
+
     return (
         <RaceHandlerContext.Provider
             value={{
@@ -142,7 +162,8 @@ const RaceHandlerState = props => {
                 getRaces,
                 clearErrors,
                 clearConfirmation,
-                setRaceConfirmed
+                setRaceConfirmed,
+                handlePayment
             }}>
             {props.children}
         </RaceHandlerContext.Provider>

@@ -5,7 +5,7 @@ const RaceEntrySchema = new mongoose.Schema({
         type: String,
         required: [true, 'Add a name']
     },
-    startnumber: {
+    startNumber: {
         type: Number,
         required: [true, 'Add a start number']
     },
