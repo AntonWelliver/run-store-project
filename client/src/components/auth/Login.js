@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
+import { Link } from 'react-router-dom';
 
 const Login = props => {
     const alertContext = useContext(AlertContext);
@@ -56,7 +57,14 @@ const Login = props => {
                     <label htmlFor='password'>Password</label>
                     <input type='password' name='password' value={password} onChange={onChange} required />
                 </div>
-                <p>If you don't have an account, <b>Register Here</b></p>
+                <p>
+                    If you don't have an account,
+                    <Link
+                        to='/register'
+                    >
+                        <b> Register Here</b>
+                    </Link>
+                </p>
                 <input type='submit' value='Login' className='btn btn-primary btn-block' />
             </form>
         </div>

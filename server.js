@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 
 const errorHandler = require('./middleware/error');
 
-
 const app = express();
 
 app.use(function (req, res, next) {
@@ -42,10 +41,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const raceList = require('./routes/raceList');
+// const raceEntries = require('./routes/raceEntries');
 const productList = require('./routes/productList');
 const auth = require('./routes/auth');
 
 app.use('/api/v1/race-list', raceList);
+// app.use('/api/v1/race-entries', raceEntries);
 app.use('/api/v1/product-list', productList);
 app.use('/api/v1/auth', auth);
 

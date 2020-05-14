@@ -4,9 +4,15 @@ const {
     createRace,
     getSingleRace,
     updateRace,
-    deleteRace
+    deleteRace,
+    getPayment
 } = require('../controllers/raceList');
+
+// const raceEntryRouter = require('./raceEntries');
+
 const router = express.Router();
+
+// router.use('./:raceId/race-entries', raceEntryRouter);
 
 router
     .route('/')
@@ -19,5 +25,6 @@ router
     .put(updateRace)
     .delete(deleteRace);
 
+router.route('/payment').post(getPayment);
 
-module.exports = router
+module.exports = router;
