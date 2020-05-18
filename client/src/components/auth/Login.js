@@ -45,19 +45,19 @@ const Login = props => {
 
     return (
         <div className='form-container'>
-            <h1>
-                Account <span className='text-primary'>Login</span>
+            <h1 className="titleText">
+                Account <span>Login</span>
             </h1>
             <form onSubmit={onSubmit}>
                 <div className='form-group'>
-                    <label htmlFor='email'>Email Address</label>
+                    <label htmlFor='email' style={{ color: "white" }}>Email Address</label>
                     <input type='email' name='email' value={email} onChange={onChange} required />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor='password'>Password</label>
+                    <label htmlFor='password' style={{ color: "white" }}>Password</label>
                     <input type='password' name='password' value={password} onChange={onChange} required />
                 </div>
-                <p>
+                <p style={{ color: "white" }}>
                     If you don't have an account,
                     <Link
                         to='/register'

@@ -26,35 +26,37 @@ if (localStorage.token) {
 
 const App = () => {
   return (
-    <AuthState>
-      <RaceHandlerState>
-        <ShopHandlerState>
-          <AlertState>
-            <SidebarState>
-              <Router>
-                <Fragment>
-                  <Navbar />
-                  <div className="container">
-                    <Sidebar />
-                    <Alerts />
-                    <Switch>
-                      <Route exact path='/' component={Home} />
-                      <Route exact path='/shop' component={Shop} />
-                      <Route exact path='/races' component={Races} />
-                      <Route exact path='/admin-race-preperation' component={AdminRacePreperation} />
-                      <Route exact path='/admin-shop-preperation' component={AdminShopPreperation} />
-                      <Route exact path='/register' component={Register} />
-                      <Route exact path='/login' component={Login} />
-                      <Route exact path='/checkout' component={Checkout} />
-                    </Switch>
-                  </div>
-                </Fragment>
-              </Router>
-            </SidebarState>
-          </AlertState>
-        </ShopHandlerState>
-      </RaceHandlerState>
-    </AuthState>
+    <div className='blurBg'>
+      <AuthState>
+        <RaceHandlerState>
+          <ShopHandlerState>
+            <AlertState>
+              <SidebarState>
+                <Router>
+                  <Fragment>
+                    <Navbar />
+                    <div className="container">
+                      <Sidebar />
+                      <Alerts />
+                      <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/shop' component={Shop} />
+                        <Route exact path='/races' component={Races} />
+                        <Route exact path='/admin-race-preperation' component={AdminRacePreperation} />
+                        <Route exact path='/admin-shop-preperation' component={AdminShopPreperation} />
+                        <Route exact path='/register' component={Register} />
+                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/checkout' component={Checkout} />
+                      </Switch>
+                    </div>
+                  </Fragment>
+                </Router>
+              </SidebarState>
+            </AlertState>
+          </ShopHandlerState>
+        </RaceHandlerState>
+      </AuthState>
+    </div>
   );
 }
 
