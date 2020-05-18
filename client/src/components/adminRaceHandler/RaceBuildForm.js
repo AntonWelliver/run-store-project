@@ -89,7 +89,7 @@ const RaceBuildForm = () => {
     return (
         <form onSubmit={onSubmit}>
             <div className='form-group'>
-                <h2 className='text-primary'>{currentRace ? 'Edit Race' : 'Add Race'}</h2>
+                <h2>{currentRace ? 'Edit Race' : 'Add Race'}</h2>
                 <input
                     type='text'
                     placeholder='Name'

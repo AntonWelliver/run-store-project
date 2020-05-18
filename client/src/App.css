@@ -34,7 +34,7 @@ html {
 .blurBg {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.3);
-    position: fixed;
+    position: relative;
     top: 0;
     right: 0;
     left: 0;
@@ -331,13 +331,14 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="date"],
-input[type="phone"],
+input[type="number"],
+input[type="datetime-local"],
 select,
 textarea {
     display: block;
     width: 100%;
     padding: 0.4rem;
-    font-size: 1.2rem;
+    font-size: 14px;
     border: 1px solid #ccc;
 }
 
