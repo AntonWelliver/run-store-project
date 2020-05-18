@@ -8,11 +8,11 @@ const {
     getPayment
 } = require('../controllers/raceList');
 
-// const raceEntryRouter = require('./raceEntries');
+const raceEntryRouter = require('./raceEntries');
 
 const router = express.Router();
 
-// router.use('./:raceId/race-entries', raceEntryRouter);
+router.use('/:raceId/race-entries', raceEntryRouter);
 
 router
     .route('/')
