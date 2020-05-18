@@ -4,7 +4,7 @@ import ShopCheckoutItem from './ShopCheckoutItem';
 
 const ShopCheckout = () => {
     const shopHandlerContext = useContext(ShopHandlerContext);
-    const { shoppingCart, shoppingTotal, orderConfirmed, setConfirmedOrder, clearOrder } = shopHandlerContext;
+    const { shoppingCart } = shopHandlerContext;
 
     if (shoppingCart !== null && shoppingCart.length === 0) {
         return <h4>No products in cart</h4>;

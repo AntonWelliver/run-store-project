@@ -134,7 +134,7 @@ const RaceHandlerState = props => {
         };
 
         try {
-            const res = await axios.post('/api/v1/race-list/payment', body, config);
+            await axios.post('/api/v1/race-list/payment', body, config);
         } catch (err) {
             dispatch({ type: RACE_ERROR, payload: err.response.data.error });
         }
